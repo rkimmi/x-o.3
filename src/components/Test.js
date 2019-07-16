@@ -112,20 +112,17 @@ export class Test extends Component {
   }
 
   checkRows() {
-    // if ever three in a row!
-    const {board} = this.state
-    let winner = null
-    if (board[0] === board[1] && board[1] === board[2]) {
-      winner = board[0]
-    } else if (board[3] === board[4] && board[4] === board[5]) {
-      winner = board[3]
-    } else if (board[6] === board[7] && board[7] === board[8]) {
-      winner = board[6]
-    }
-    if (winner) {
-      this.setState({
-        winner: winner
-      })
+    const { board } = this.state
+    for (let i = 0; i < board.length; i++) {
+      if (
+        board[i + 2] &&
+        board[i] === board[i + 1] &&
+        board[i + 1] === board[i + 2]
+      ) {
+        this.setState({
+          winner: board[i]
+        })
+      }
     }
   }
 
