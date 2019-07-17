@@ -128,19 +128,17 @@ export class Test extends Component {
 
   checkCols() {
     // if ever exactly two spaces between
-    const board = this.state.board
-    let winner = null
-    if (board[0] === board[3] && board[3] === board[6]) {
-      winner = board[0]
-    } else if (board[1] === board[4] && board[4] === board[7]) {
-      winner = board[1]
-    } else if (board[2] === board[5] && board[5] === board[8]) {
-      winner = board[2]
-    }
-    if (winner) {
-      this.setState({
-        winner: winner
-      })
+    const { board } = this.state
+    for (let i = 0; i < board.length; i++) {
+      if (
+        board[i].length &&
+        board[i] === board[i + 3] &&
+        board[i] === board[i + 6]
+      ) {
+        this.setState({
+          winner: board[i]
+        })
+      }
     }
   }
 
